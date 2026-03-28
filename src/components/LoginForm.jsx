@@ -26,22 +26,30 @@ const LoginForm = () => {
       showToast('Please enter your password');
     } else {
       showToast('Login successful!', 'green');
-      // Add your authentication logic here
-      console.log('Login success', { username: trimmedUser, rememberMe });
+
+      console.log('Login success', {
+        username: trimmedUser,
+        rememberMe
+      });
     }
   };
 
   return (
     <div className="w-full max-w-md bg-white/70 backdrop-blur-lg rounded-3xl shadow-xl p-8">
+      
       <Logo />
 
       <h1 className="text-center text-2xl font-semibold text-gray-800">
         Stock Management <br />
         <span className="text-blue-500">System</span>
       </h1>
-      <p className="text-center text-sm text-gray-500 mt-1 mb-6">SECURE ACCESS PORTAL</p>
+
+      <p className="text-center text-sm text-gray-500 mt-1 mb-6">
+        SECURE ACCESS PORTAL
+      </p>
 
       <form onSubmit={handleSubmit} className="space-y-4">
+        
         {/* Username */}
         <div>
           <label className="text-sm text-gray-600">Username</label>
@@ -57,13 +65,16 @@ const LoginForm = () => {
           </div>
         </div>
 
+        {/* Password */}
         <PasswordInput
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Enter your password"
         />
 
+        {/* Remember + Forgot */}
         <div className="flex items-center justify-between text-sm">
+          
           <label className="flex items-center gap-2 text-gray-600 cursor-pointer">
             <input
               type="checkbox"
@@ -73,11 +84,19 @@ const LoginForm = () => {
             />
             Remember me
           </label>
-          <a href="#" className="text-blue-500 hover:underline">
+
+          {/* FIXED: replaced <a href="#"> with button */}
+          <button
+            type="button"
+            onClick={() => showToast('Forgot password feature coming soon')}
+            className="text-blue-500 hover:underline"
+          >
             Forgot password?
-          </a>
+          </button>
+
         </div>
 
+        {/* Submit */}
         <button
           type="submit"
           className="w-full py-2.5 rounded-xl text-white font-medium bg-gradient-to-r from-blue-500 to-indigo-500 hover:opacity-90 transition cursor-pointer"
@@ -90,8 +109,13 @@ const LoginForm = () => {
         © 2026 StockMS — All rights reserved
       </p>
 
+      {/* Toast */}
       {toast.visible && (
-        <Toast message={toast.message} type={toast.type} onClose={hideToast} />
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={hideToast}
+        />
       )}
     </div>
   );
